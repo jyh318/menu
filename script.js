@@ -34,6 +34,12 @@ function init() {
 
 // 绑定事件
 function bindEvents() {
+    // 结算按钮点击事件
+    const checkoutButton = document.querySelector('.checkout-button');
+    checkoutButton.addEventListener('click', () => {
+        generateCheckoutJSON();
+    });
+
     // 搜索输入事件
     searchInput.addEventListener('input', (e) => {
         searchKeyword = e.target.value.toLowerCase();
@@ -426,6 +432,38 @@ function updateCartDisplay() {
             cartContent.classList.remove('active');
         }
     }
+}
+
+// 生成结算JSON数据
+function generateCheckoutJSON() {
+    if (cart.length === 0) {
+        alert('购物车为空，请先添加菜品');
+        return;
+    }
+
+    let totalAmount = 0;
+    const orderItems = cart.map((item, index) => {
+        const subtotal = item.price * item.quantity;
+        totalAmount += subtotal;
+        return {
+            '序号': index + 1,
+            '菜品名称': item.name,
+            '菜品单价': item.price.toFixed(2),
+            '菜品数量': item.quantity,
+            '小计金额': subtotal.toFixed(2)
+        };
+    });
+
+    const checkoutData = {
+        '订单详情': orderItems,
+        '合计金额': totalAmount.toFixed(2)
+    };
+
+    const jsonString = JSON.stringify(checkoutData, null, 2);
+    console.log('结算JSON数据:', jsonString);
+
+    const encodedData = encodeURIComponent(jsonString);
+    window.location.href = `receipt.html?order=${encodedData}`;
 }
 
 // 绑定购物车拖动事件
