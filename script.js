@@ -37,6 +37,8 @@ function init() {
     bindEvents();
     bindCartDragEvents();
     bindLogoClickEvent();
+    // 初始化懒加载
+    lazyLoad();
 }
 
 // 绑定事件
@@ -178,6 +180,9 @@ function renderDishes() {
     if (editMode) {
         toggleEditButtons();
     }
+    
+    // 重新初始化懒加载
+    lazyLoad();
 }
 
 // 创建菜品卡片
@@ -187,7 +192,7 @@ function createDishCard(dish) {
     
     card.innerHTML = `
         <div class="dish-image">
-            <img src="${dish.image}" alt="${dish.name}" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E加载中...%3C/text%3E%3C/svg%3E" data-src="${dish.image}" alt="${dish.name}" class="lazy-image" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
         <div class="dish-info">
             <h3 class="dish-name">${dish.name}</h3>
@@ -261,7 +266,7 @@ function createDishCard(dish) {
 function showDishDetail(dish) {
     dishDetail.innerHTML = `
         <div class="dish-detail-image">
-            <img src="${dish.image}" alt="${dish.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300' viewBox='0 0 800 300'%3E%3Crect width='800' height='300' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E加载中...%3C/text%3E%3C/svg%3E" data-src="${dish.image}" alt="${dish.name}" class="lazy-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
         </div>
         <h2 class="dish-detail-name">${dish.name}</h2>
         <div class="dish-detail-price">¥${dish.price.toFixed(2)}</div>
@@ -279,6 +284,8 @@ function showDishDetail(dish) {
         </div>
     `;
     dishModal.classList.add('active');
+    // 加载懒加载图片
+    lazyLoad();
 }
 
 // 添加到购物车
@@ -709,6 +716,26 @@ function toggleEditButtons() {
         } else {
             btn.style.display = 'none';
         }
+    });
+}
+
+// 懒加载图片
+function lazyLoad() {
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy-image');
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    lazyImages.forEach(img => {
+        imageObserver.observe(img);
     });
 }
 
