@@ -169,7 +169,7 @@ function createDishCard(dish) {
             <div class="dish-price">¥${dish.price.toFixed(2)}</div>
             <p class="dish-desc">${dish.description}</p>
             <div class="dish-tags">
-                ${dish.tags.map(tag => `<span class="dish-tag">${tag}</span>`).join('')}
+                ${dish.tags.map(tag => `<span class="dish-tag ${tag}">${tag}</span>`).join('')}
             </div>
             <div class="dish-quantity">
                 <div class="quantity-control">
