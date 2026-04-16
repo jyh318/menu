@@ -262,11 +262,11 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #F2C76E;
+    background-color: #87CEEB;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 15px rgba(242, 199, 110, 0.5);
+    box-shadow: 0 5px 15px rgba(135, 206, 235, 0.5);
 }
 
 .cart-container.ball::before {
