@@ -112,7 +112,7 @@ function renderTags() {
     tagsWrapper.innerHTML = '';
     tags.forEach(tag => {
         const tagElement = document.createElement('div');
-        tagElement.className = `tag ${selectedTags.includes(tag) ? 'active' : ''}`;
+        tagElement.className = `tag ${tag} ${selectedTags.includes(tag) ? 'active' : ''}`;
         tagElement.textContent = tag;
         tagElement.addEventListener('click', () => {
             toggleTag(tag);
