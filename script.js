@@ -492,7 +492,91 @@ function saveEdit() {
             
             // 清空表单
             editDishForm.reset();
+            
+            // 生成更新后的dishes数组JSON
+            generateDishesJSON();
         }
+    }
+}
+
+// 生成dishes数组JSON
+function generateDishesJSON() {
+    // 生成完整的data.js内容
+    const dataJSContent = `// 初始标签数据
+let tags = [
+    "炒菜", "炖菜", "卤菜", "红烧", "清蒸", "营养", "丰富", "重口", "清淡", "主食", "健康"
+];
+
+// 初始菜品数据
+const dishes = [
+${dishes.map(dish => {
+    // 确保所有字段格式正确
+    const formattedDish = {
+        ...dish,
+        tags: Array.isArray(dish.tags) ? dish.tags : [dish.tags],
+        ingredients: typeof dish.ingredients === 'string' ? dish.ingredients : dish.ingredients.join(', '),
+        method: typeof dish.method === 'string' ? dish.method : dish.method.join('\n')
+    };
+    return JSON.stringify(formattedDish, null, 4);
+}).join(',\n')}
+];
+
+// 购物车数据
+let cart = [];`;
+    
+    // 生成JSON对象用于快捷指令
+    const jsonData = {
+        tags: tags,
+        dishes: dishes
+    };
+    
+    // 编码JSON数据
+    const encodedJSON = encodeURIComponent(JSON.stringify(jsonData));
+    
+    // 生成苹果快捷指令URL
+    const shortcutURL = `shortcuts://run-shortcut?name=更新菜品数据&input=${encodedJSON}`;
+    
+    // 创建一个弹出窗口，显示JSON内容
+    const popup = window.open('', 'dishesJSON', 'width=800,height=600');
+    if (popup) {
+        popup.document.write(`
+            <html>
+                <head>
+                    <title>更新后的 dishes 数组</title>
+                    <style>
+                        body { font-family: monospace; white-space: pre; padding: 20px; }
+                        .btn-container { position: fixed; top: 10px; right: 10px; display: flex; gap: 10px; z-index: 100; }
+                        .btn { padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+                        .copy-btn { background: #7A77B9; color: white; }
+                        .shortcut-btn { background: #F2C76E; color: white; }
+                        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+                    </style>
+                </head>
+                <body>
+                    <div class="btn-container">
+                        <button class="btn copy-btn" onclick="copyContent()">复制内容</button>
+                        <button class="btn shortcut-btn" onclick="openShortcut()">发送到快捷指令</button>
+                    </div>
+                    <pre id="json-content">${dataJSContent}</pre>
+                    <script>
+                        function copyContent() {
+                            const content = document.getElementById('json-content').textContent;
+                            navigator.clipboard.writeText(content).then(() => {
+                                alert('内容已复制到剪贴板，请粘贴到 data.js 文件中');
+                            });
+                        }
+                        
+                        function openShortcut() {
+                            const shortcutURL = '${shortcutURL}';
+                            window.location.href = shortcutURL;
+                        }
+                    </script>
+                </body>
+            </html>
+        `);
+        popup.document.close();
+    } else {
+        alert('请允许弹出窗口，以便查看更新后的 dishes 数组');
     }
 }
 
