@@ -9,7 +9,7 @@
 <body>
     <!-- 顶部导航栏 -->
     <header class="header">
-        <img src="img/icon/logo.png" alt="logo" height="50">
+        <img id="logo" src="img/icon/logo.png" alt="logo" height="50">
         <div class="search-container">
             <input type="text" id="search-input" placeholder="搜索菜品、价格或描述...">
         </div>
@@ -99,6 +99,29 @@
                     <button type="submit">添加标签</button>
                 </form>
             </div>
+        </div>
+    </div>
+    
+    <!-- 编辑模式 -->
+    <div class="edit-panel" id="edit-panel">
+        <div class="edit-header">
+            <h2>编辑菜品</h2>
+            <button id="edit-close" class="edit-close">
+                <img src="img/icon/关闭.png" alt="关闭" width="24" height="24">
+            </button>
+        </div>
+        <div class="edit-content">
+            <form id="edit-dish-form">
+                <input type="text" placeholder="菜品名称" id="edit-dish-name">
+                <input type="number" placeholder="价格" id="edit-dish-price">
+                <input type="text" placeholder="图片URL" id="edit-dish-image">
+                <textarea placeholder="菜品简介" id="edit-dish-desc"></textarea>
+                <textarea placeholder="详细描述" id="edit-dish-detail-desc"></textarea>
+                <textarea placeholder="制作方法" id="edit-dish-method"></textarea>
+                <textarea placeholder="用料" id="edit-dish-ingredients"></textarea>
+                <input type="text" placeholder="标签 (用逗号分隔)" id="edit-dish-tags">
+                <button type="submit">保存修改</button>
+            </form>
         </div>
     </div>
 

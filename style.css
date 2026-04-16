@@ -362,6 +362,23 @@ body {
     transform: translateY(-2px);
 }
 
+.edit-dish-btn {
+    padding: 0.5rem 1rem;
+    background-color: #7A77B9;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.edit-dish-btn:hover {
+    background-color: #BD9DEA;
+    transform: translateY(-2px);
+}
+
 /* 购物车 */
 .cart-container {
     position: fixed;
@@ -712,6 +729,92 @@ body {
 
 #dish-form button:hover, #tag-form button:hover {
     background-color: #BD9DEA;
+    transform: translateY(-2px);
+}
+
+/* 编辑模式 */
+.edit-panel {
+    position: fixed;
+    top: 0;
+    left: -500px;
+    width: 500px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1500;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+.edit-panel.active {
+    left: 0;
+}
+
+.edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background-color: #F2C76E;
+    color: white;
+}
+
+.edit-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.edit-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.edit-content {
+    padding: 2rem;
+}
+
+#edit-dish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#edit-dish-form input, #edit-dish-form textarea {
+    padding: 0.8rem;
+    border: 1px solid #EBE8E7;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#edit-dish-form input:focus, #edit-dish-form textarea:focus {
+    border-color: #F2C76E;
+    box-shadow: 0 0 0 3px rgba(242, 199, 110, 0.1);
+}
+
+#edit-dish-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#edit-dish-form button {
+    padding: 0.8rem;
+    background-color: #F2C76E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#edit-dish-form button:hover {
+    background-color: #EA7186;
     transform: translateY(-2px);
 }
 

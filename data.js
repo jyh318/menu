@@ -1,6 +1,6 @@
 // 初始标签数据
 let tags = [
-    "炒菜", "炖菜", "卤菜", "红烧", "清蒸", "营养", "丰富", "重口", "清淡"
+    "炒菜", "炖菜", "卤菜", "红烧", "清蒸", "营养", "丰富", "重口", "清淡", "主食", "健康"
 ];
 
 // 初始菜品数据
@@ -18,7 +18,7 @@ const dishes = [
             "重口",
             "丰富"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Kung%20Pao%20chicken%20dish%20with%20peanuts%20and%20chilies&image_size=square"
+        "image": "./img/宫保鸡丁.jpg"
     },
     {
         "id": 2,
@@ -32,7 +32,7 @@ const dishes = [
             "红烧",
             "丰富"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Braised%20pork%20belly%20dish%20with%20brown%20sauce&image_size=square"
+        "image": "./img/红烧肉.jpg"
     },
     {
         "id": 3,
@@ -47,7 +47,7 @@ const dishes = [
             "清淡",
             "营养"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Steamed%20sea%20bass%20fish%20dish&image_size=square"
+        "image": "./img/清蒸鲈鱼.jpg"
     },
     {
         "id": 4,
@@ -62,7 +62,7 @@ const dishes = [
             "营养",
             "丰富"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Beef%20and%20potato%20stew%20dish&image_size=square"
+        "image": "./img/土豆炖牛肉.jpg"
     },
     {
         "id": 5,
@@ -76,7 +76,7 @@ const dishes = [
             "卤菜",
             "丰富"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Braised%20duck%20dish%20in%20soy%20sauce&image_size=square"
+        "image": "./img/卤鸭.png"
     },
     {
         "id": 6,
@@ -91,7 +91,7 @@ const dishes = [
             "清淡",
             "营养"
         ],
-        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Stir%20fried%20vegetables%20dish&image_size=square"
+        "image": "./img/清炒时蔬.jpg"
     },
     {
         "id": 7,
@@ -133,7 +133,7 @@ const dishes = [
             "炒菜"
         ],
         "price": 36,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/image-jyh/img/%E5%AE%AB%E4%BF%9D%E9%B8%A1%E4%B8%81.png",
+        "image": "./img/宫保鸡丁.jpg",
         "description": "",
         "detailDescription": "经典川菜宫保鸡丁，鸡肉滑嫩，花生米酥脆，搭配干辣椒和花椒，麻辣鲜香，酸甜适口，下饭神器。",
         "ingredients": [
@@ -170,7 +170,7 @@ const dishes = [
             "炒菜"
         ],
         "price": 24,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/image-jyh/img/%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90.png",
+        "image": "./img/麻婆豆腐.png",
         "description": "",
         "detailDescription": "正宗川味麻婆豆腐，豆腐嫩滑入味，麻辣鲜香，麻、辣、烫、嫩、酥、香、鲜俱全，是经典的下饭川菜。",
         "ingredients": [
@@ -202,7 +202,7 @@ const dishes = [
     "name": "糖醋排骨",
     "tags": ["红烧"],
     "price": 48.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/image-jyh/img/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8.png",
+    "image": "./img/糖醋排骨.png",
     "description":"",
         "detailDescription": "酸甜可口的糖醋排骨，排骨外焦里嫩，裹满浓郁的糖醋酱汁，色泽红亮，口感丰富，老少皆宜。",
     "ingredients": ["排骨", "姜片", "葱段", "料酒", "生抽", "老抽", "香醋", "白糖", "盐", "淀粉"],
@@ -222,7 +222,7 @@ const dishes = [
     "name": "鱼香肉丝",
     "tags": ["炒菜"],
     "price": 32.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/image-jyh/img/%E9%B1%BC%E9%A6%99%E8%82%89%E4%B8%9D.jpg",
+    "image": "./img/鱼香肉丝.jpg",
     "description":"",
         "detailDescription": "经典川菜鱼香肉丝，肉丝滑嫩，配菜爽脆，鱼香味浓郁，咸甜酸辣平衡，是一道非常下饭的家常菜。",
     "ingredients": ["猪里脊肉", "木耳", "胡萝卜", "竹笋", "泡椒", "姜", "蒜", "葱", "生抽", "醋", "白糖", "料酒", "淀粉"],
@@ -242,7 +242,7 @@ const dishes = [
     "name": "凉拌黄瓜",
     "tags": ["凉拌"],
     "price": 16.00,
-    "image": "https://raw.githubusercontent.com/jyh318/image-jyh/master/img/%E5%87%89%E6%8B%8C%E9%BB%84%E7%93%9C.jpg",
+    "image": "./img/凉拌黄瓜.jpg",
     "description":"",
         "detailDescription": "清爽开胃的凉拌黄瓜，黄瓜脆爽，酸辣咸香，做法简单，是夏季必备的开胃小菜。",
     "ingredients": ["黄瓜", "蒜末", "小米辣", "生抽", "香醋", "香油", "白糖", "盐", "香菜"],
@@ -259,7 +259,7 @@ const dishes = [
     "name": "番茄炒蛋",
     "tags": ["炒菜"],
     "price": 12.00,
-    "image": "https://raw.githubusercontent.com/jyh318/image-jyh/master/img/%E7%95%AA%E8%8C%84%E7%82%92%E8%9B%8B.jpg",
+    "image": "./img/番茄炒蛋.jpg",
     "description":"",
         "detailDescription": "最简单也最经典的家常菜番茄炒蛋，鸡蛋嫩滑，番茄酸甜入味，做法简单，营养均衡，老少皆宜。",
     "ingredients": ["番茄", "鸡蛋", "葱", "盐", "白糖", "食用油"],
@@ -278,7 +278,7 @@ const dishes = [
     "name": "红烧肉",
     "tags": ["红烧"],
     "price": 48.00,
-    "image": "https://raw.githubusercontent.com/jyh318/image-jyh/master/img/%E7%BA%A2%E7%83%A7%E8%82%89.jpg",
+    "image": "./img/红烧肉.jpg",
     "description":"",
         "detailDescription": "经典的红烧肉，五花肉肥瘦相间，炖至软糯入味，色泽红亮，肥而不腻，入口即化，是家宴必备菜品。",
     "ingredients": ["五花肉", "姜片", "葱段", "八角", "桂皮", "香叶", "生抽", "老抽", "料酒", "冰糖", "盐"],
@@ -298,7 +298,7 @@ const dishes = [
     "name": "清炒时蔬",
     "tags": ["炒菜"],
     "price": 14.00,
-    "image": "",
+    "image": "./img/清炒时蔬.jpg",
     "description":"",
         "detailDescription": "清爽的清炒时蔬，选用新鲜青菜，简单清炒保留蔬菜的原汁原味，清淡可口，解腻又健康。",
     "ingredients": ["青菜", "蒜", "盐", "食用油", "鸡精"],
@@ -408,7 +408,7 @@ const dishes = [
             "炖菜"
         ],
         "price": 38,
-        "image": "",
+        "image": "./img/冬瓜排骨汤.jpg",
         "description": "",
         "detailDescription": "清淡鲜美的冬瓜排骨汤，排骨软烂，冬瓜清甜，汤鲜味美，营养丰富，适合全家饮用。",
         "ingredients": [
@@ -436,7 +436,7 @@ const dishes = [
             "蒸菜"
         ],
         "price": 58,
-        "image": "https://raw.githubusercontent.com/jyh318/image-jyh/master/img/%E8%92%9C%E8%93%89%E8%92%B8%E6%89%87%E8%B4%9D.jpg",
+        "image": "./img/蒜蓉蒸扇贝.jpg",
         "description": "",
         "detailDescription": "鲜美的蒜蓉粉丝蒸扇贝，扇贝肉嫩，粉丝吸满汤汁，蒜香浓郁，做法简单又美味。",
         "ingredients": [
@@ -466,7 +466,7 @@ const dishes = [
             "炒菜"
         ],
         "price": 28,
-        "image": "",
+        "image": "./img/扬州炒饭.png",
         "description": "",
         "detailDescription": "正宗扬州炒饭，米饭粒粒分明，配料丰富，有虾仁、火腿、鸡蛋等，色香味俱全。",
         "ingredients": [
@@ -498,8 +498,7 @@ const dishes = [
             "凉拌"
         ],
         "price": 16,
-        "image": "https://raw.githubusercontent.com/jyh318/image-jyh/master/img/%E5%87%89%E6%8B%8C%E6%B5%B7%E5%B8%A6%E4%B8%9D.jpg",
-        "description": "",
+        "image": "./img/凉拌海带丝.jpg",
         "detailDescription": "清爽可口的凉拌海带丝，海带丝脆爽，酸辣开胃，是一道非常受欢迎的凉拌小菜。",
         "ingredients": [
             "海带丝",
@@ -527,7 +526,7 @@ const dishes = [
             "炖菜"
         ],
         "price": 48,
-        "image": "",
+        "image": "./img/香菇炖鸡.png",
         "description": "",
         "detailDescription": "营养美味的香菇炖鸡，鸡肉软烂入味，香菇吸收了鸡肉的鲜香，汤浓味美，营养丰富。",
         "ingredients": [
@@ -550,35 +549,21 @@ const dishes = [
             "加盐调味，放入枸杞即可"
         ]
     },
-    {
-        "id": 25,
-        "name": "清蒸排骨",
-        "tags": [
-            "蒸菜"
-        ],
-        "price": 42,
-        "image": "",
-        "description": "",
-        "detailDescription": "清淡鲜美的清蒸排骨，排骨嫩滑，原汁原味，搭配豆豉和蒜蓉，咸香适口，做法简单。",
-        "ingredients": [
-            "排骨",
-            "豆豉",
-            "蒜末",
-            "姜末",
-            "生抽",
-            "料酒",
-            "淀粉",
-            "葱",
-            "盐"
-        ],
-        "method": [
-            "排骨焯水，洗净沥干",
-            "加入蒜末、姜末、豆豉",
-            "加生抽、料酒、盐、淀粉腌制20分钟",
-            "水烧开后，大火蒸25分钟",
-            "撒葱花，淋热油即可"
-        ]
-    },
+{
+    "id": 25,
+    "name": "粉蒸排骨",
+    "price": 42,
+    "description": "软糯入味，米粉油润，咸香不腻",
+    "detailDescription": "粉蒸排骨是经典川味家常菜，选用鲜嫩排骨裹上蒸肉米粉蒸制而成，肉质软烂脱骨，米粉吸饱肉香，咸鲜微甜、油润适口，老少皆宜。",
+    "method": "1. 排骨洗净切块，用生抽、老抽、料酒、盐、糖、豆瓣酱、葱姜腌制20分钟。2. 加入蒸肉米粉抓匀，让每块排骨裹满米粉。3. 盘底铺南瓜或土豆，摆上排骨，水开上锅蒸40-60分钟至软烂即可。",
+    "ingredients": "排骨、蒸肉米粉、葱姜、生抽、老抽、料酒、盐、糖、豆瓣酱、食用油",
+    "tags": [
+        "蒸菜",
+        "软糯",
+        "家常"
+    ],
+    "image": "./img/粉蒸排骨.jpg"
+},
     {
         "id": 26,
         "name": "韭菜盒子",
@@ -586,7 +571,7 @@ const dishes = [
             "主食"
         ],
         "price": 26,
-        "image": "",
+        "image": "./img/韭菜盒子.png",
         "description": "",
         "detailDescription": "金黄酥脆的韭菜盒子，外皮酥脆，内馅鲜香，韭菜和鸡蛋的完美结合，是经典的家常主食。",
         "ingredients": [
@@ -614,7 +599,7 @@ const dishes = [
             "卤菜"
         ],
         "price": 32,
-        "image": "",
+        "image": "./img/卤鸡爪.png",
         "description": "",
         "detailDescription": "软糯入味的卤鸡爪，鸡爪Q弹有嚼劲，卤香浓郁，是追剧、下酒的绝佳小吃。",
         "ingredients": [
@@ -647,7 +632,7 @@ const dishes = [
             "主食"
         ],
         "price": 22,
-        "image": "",
+        "image": "./img/皮蛋瘦肉粥.png",
         "description": "",
         "detailDescription": "绵密鲜香的皮蛋瘦肉粥，大米熬至软烂，搭配嫩滑的瘦肉和Q弹的皮蛋，营养又美味。",
         "ingredients": [

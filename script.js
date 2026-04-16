@@ -15,12 +15,18 @@ const tagForm = document.getElementById('tag-form');
 const tagsList = document.getElementById('tags-list');
 const cartToggle = document.getElementById('cart-toggle');
 const cartContent = document.getElementById('cart-content');
+const logo = document.getElementById('logo');
+const editPanel = document.getElementById('edit-panel');
+const editClose = document.getElementById('edit-close');
+const editDishForm = document.getElementById('edit-dish-form');
 
 // 状态变量
 let selectedTags = [];
 let searchKeyword = '';
 let cartVisible = false;
 let cartExpanded = false;
+let editingDishId = null;
+let editMode = false;
 
 // 初始化
 function init() {
@@ -30,6 +36,7 @@ function init() {
     updateCartDisplay();
     bindEvents();
     bindCartDragEvents();
+    bindLogoClickEvent();
 }
 
 // 绑定事件
@@ -79,6 +86,19 @@ function bindEvents() {
     tagForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addTag();
+    });
+
+    // 编辑面板关闭事件
+    editClose.addEventListener('click', () => {
+        editPanel.classList.remove('active');
+        editingDishId = null;
+        editDishForm.reset();
+    });
+
+    // 保存编辑
+    editDishForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveEdit();
     });
 
     // 购物车切换
@@ -153,6 +173,11 @@ function renderDishes() {
         const dishCard = createDishCard(dish);
         menuGrid.appendChild(dishCard);
     });
+    
+    // 重新渲染后，根据当前编辑模式状态更新编辑按钮显示
+    if (editMode) {
+        toggleEditButtons();
+    }
 }
 
 // 创建菜品卡片
@@ -177,15 +202,23 @@ function createDishCard(dish) {
                     <span class="quantity" data-id="${dish.id}">0</span>
                     <button class="quantity-btn increase" data-id="${dish.id}">+</button>
                 </div>
+                <button class="edit-dish-btn" data-id="${dish.id}" style="display: none;">编辑</button>
             </div>
         </div>
     `;
 
     // 点击卡片查看详情
     card.addEventListener('click', (e) => {
-        if (!e.target.closest('.quantity-btn')) {
+        if (!e.target.closest('.quantity-btn') && !e.target.closest('.edit-dish-btn')) {
             showDishDetail(dish);
         }
+    });
+    
+    // 编辑菜品按钮点击事件
+    const editBtn = card.querySelector('.edit-dish-btn');
+    editBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        editDish(dish.id);
     });
 
     // 数量控制
@@ -368,6 +401,28 @@ function addTag() {
     }
 }
 
+// 编辑菜品
+function editDish(dishId) {
+    const dish = dishes.find(d => d.id === dishId);
+    if (dish) {
+        // 填充表单
+        document.getElementById('edit-dish-name').value = dish.name;
+        document.getElementById('edit-dish-price').value = dish.price;
+        document.getElementById('edit-dish-image').value = dish.image;
+        document.getElementById('edit-dish-desc').value = dish.description;
+        document.getElementById('edit-dish-detail-desc').value = dish.detailDescription;
+        document.getElementById('edit-dish-method').value = dish.method;
+        document.getElementById('edit-dish-ingredients').value = dish.ingredients;
+        document.getElementById('edit-dish-tags').value = dish.tags.join(', ');
+        
+        // 设置编辑模式
+        editingDishId = dishId;
+        
+        // 打开编辑面板
+        editPanel.classList.add('active');
+    }
+}
+
 // 保存菜品
 function saveDish() {
     const name = document.getElementById('dish-name').value.trim();
@@ -381,6 +436,7 @@ function saveDish() {
     const dishTags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
 
     if (name && price) {
+        // 添加新菜品
         const newDish = {
             id: dishes.length + 1,
             name,
@@ -396,6 +452,47 @@ function saveDish() {
         renderDishes();
         // 清空表单
         dishForm.reset();
+    }
+}
+
+// 保存编辑
+function saveEdit() {
+    const name = document.getElementById('edit-dish-name').value.trim();
+    const price = parseFloat(document.getElementById('edit-dish-price').value);
+    const image = document.getElementById('edit-dish-image').value.trim() || "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20food%20dish&image_size=square";
+    const description = document.getElementById('edit-dish-desc').value.trim();
+    const detailDescription = document.getElementById('edit-dish-detail-desc').value.trim();
+    const method = document.getElementById('edit-dish-method').value.trim();
+    const ingredients = document.getElementById('edit-dish-ingredients').value.trim();
+    const tagsInput = document.getElementById('edit-dish-tags').value.trim();
+    const dishTags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
+
+    if (name && price && editingDishId) {
+        // 更新现有菜品
+        const dishIndex = dishes.findIndex(dish => dish.id === editingDishId);
+        if (dishIndex !== -1) {
+            dishes[dishIndex] = {
+                ...dishes[dishIndex],
+                name,
+                price,
+                image,
+                description,
+                detailDescription,
+                method,
+                ingredients,
+                tags: dishTags
+            };
+            editingDishId = null;
+            
+            // 关闭编辑面板
+            editPanel.classList.remove('active');
+            
+            // 重新渲染菜品
+            renderDishes();
+            
+            // 清空表单
+            editDishForm.reset();
+        }
     }
 }
 
@@ -508,6 +605,26 @@ function bindCartDragEvents() {
         isDragging = false;
         isBallClick = false;
         cartContainer.style.cursor = 'move';
+    });
+}
+
+// 绑定logo点击事件
+function bindLogoClickEvent() {
+    logo.addEventListener('click', () => {
+        editMode = !editMode;
+        toggleEditButtons();
+    });
+}
+
+// 切换编辑按钮显示/隐藏
+function toggleEditButtons() {
+    const editButtons = document.querySelectorAll('.edit-dish-btn');
+    editButtons.forEach(btn => {
+        if (editMode) {
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
     });
 }
 
