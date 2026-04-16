@@ -534,7 +534,7 @@ let cart = [];`;
     const encodedJSON = encodeURIComponent(JSON.stringify(jsonData));
     
     // 生成苹果快捷指令URL
-    const shortcutURL = `shortcuts://run-shortcut?name=更新菜品数据&input=${encodedJSON}`;
+    const shortcutURL = `shortcuts://run-shortcut?name=小贾私房菜&input=${encodedJSON}`;
     
     // 创建一个弹出窗口，显示JSON内容
     const popup = window.open('', 'dishesJSON', 'width=800,height=600');
