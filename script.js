@@ -166,7 +166,10 @@ function renderDishes() {
         // 搜索筛选
         const searchMatch = !searchKeyword || 
             dish.name.toLowerCase().includes(searchKeyword) ||
-            dish.description.toLowerCase().includes(searchKeyword) ||
+            (dish.description && dish.description.toLowerCase().includes(searchKeyword)) ||
+            (dish.detailDescription && dish.detailDescription.toLowerCase().includes(searchKeyword)) ||
+            (dish.ingredients && (typeof dish.ingredients === 'string' ? dish.ingredients : dish.ingredients.join(', ')).toLowerCase().includes(searchKeyword)) ||
+            (dish.method && (typeof dish.method === 'string' ? dish.method : dish.method.join(', ')).toLowerCase().includes(searchKeyword)) ||
             dish.price.toString().includes(searchKeyword);
         return tagMatch && searchMatch;
     });

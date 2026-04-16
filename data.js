@@ -170,7 +170,7 @@ const dishes = [
             "炒菜"
         ],
         "price": 24,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/麻婆豆腐.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/麻婆豆腐.jpg",
         "description": "",
         "detailDescription": "正宗川味麻婆豆腐，豆腐嫩滑入味，麻辣鲜香，麻、辣、烫、嫩、酥、香、鲜俱全，是经典的下饭川菜。",
         "ingredients": [
