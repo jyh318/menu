@@ -127,6 +127,14 @@ function bindEvents() {
             updateCartDisplay();
         }
     });
+
+    // 保存到GitHub按钮事件
+    const saveToGithubBtn = document.getElementById('save-to-github');
+    if (saveToGithubBtn) {
+        saveToGithubBtn.addEventListener('click', () => {
+            saveDataToGitHub();
+        });
+    }
 }
 
 // 渲染标签
@@ -587,6 +595,91 @@ let cart = [];`;
         popup.document.close();
     } else {
         alert('请允许弹出窗口，以便查看更新后的 dishes 数组');
+    }
+}
+
+// 保存数据到GitHub
+async function saveDataToGitHub() {
+    const saveBtn = document.getElementById('save-to-github');
+    const statusEl = document.getElementById('save-status');
+    
+    // 禁用按钮
+    saveBtn.disabled = true;
+    statusEl.textContent = '正在保存...';
+    statusEl.className = 'save-status';
+    
+    try {
+        // 生成完整的data.js内容
+        const dataJSContent = `// 初始标签数据
+let tags = ${JSON.stringify(tags, null, 4)};
+
+// 初始菜品数据
+const dishes = ${JSON.stringify(dishes, null, 4)};
+
+// 购物车数据
+let cart = [];`;
+
+        // GitHub API配置
+        const owner = 'jyh318';
+        const repo = 'menu';
+        const path = 'data.js';
+        const token = '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';
+        
+        // 先获取文件的SHA（用于更新）
+        const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const getResponse = await fetch(getUrl, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        });
+        
+        let sha = null;
+        if (getResponse.ok) {
+            const existingFile = await getResponse.json();
+            sha = existingFile.sha;
+        }
+        
+        // 编码内容
+        const content = btoa(unescape(encodeURIComponent(dataJSContent)));
+        
+        // 构建请求数据
+        const requestData = {
+            message: 'Update data.js via admin panel',
+            content: content
+        };
+        
+        if (sha) {
+            requestData.sha = sha;
+        }
+        
+        // 发送请求
+        const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const response = await fetch(putUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            statusEl.textContent = '✓ 保存成功！';
+            statusEl.className = 'save-status success';
+        } else {
+            const error = await response.json();
+            console.error('保存失败:', error);
+            statusEl.textContent = '✗ 保存失败: ' + (error.message || '未知错误');
+            statusEl.className = 'save-status error';
+        }
+    } catch (error) {
+        console.error('保存失败:', error);
+        statusEl.textContent = '✗ 保存失败: ' + error.message;
+        statusEl.className = 'save-status error';
+    } finally {
+        // 恢复按钮状态
+        saveBtn.disabled = false;
     }
 }
 
