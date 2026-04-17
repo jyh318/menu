@@ -1,6 +1,16 @@
 // 初始标签数据
 let tags = [
-    "炒菜", "炖菜", "卤菜", "红烧", "清蒸", "营养", "丰富", "重口", "清淡", "主食", "健康"
+    "炒菜",
+    "炖菜",
+    "卤菜",
+    "红烧",
+    "清蒸",
+    "营养",
+    "丰富",
+    "重口",
+    "清淡",
+    "主食",
+    "健康"
 ];
 
 // 初始菜品数据
@@ -197,119 +207,191 @@ const dishes = [
             "翻炒均匀即可出锅"
         ]
     },
-  {
-    "id": 11,
-    "name": "糖醋排骨",
-    "tags": ["红烧"],
-    "price": 48.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/糖醋排骨.png",
-    "description":"",
+    {
+        "id": 11,
+        "name": "糖醋排骨",
+        "tags": [
+            "红烧"
+        ],
+        "price": 48,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/糖醋排骨.png",
+        "description": "",
         "detailDescription": "酸甜可口的糖醋排骨，排骨外焦里嫩，裹满浓郁的糖醋酱汁，色泽红亮，口感丰富，老少皆宜。",
-    "ingredients": ["排骨", "姜片", "葱段", "料酒", "生抽", "老抽", "香醋", "白糖", "盐", "淀粉"],
-    "method": [
-      "排骨焯水，去除血沫和杂质",
-      "锅中放油，放入白糖炒出糖色",
-      "加入排骨翻炒至上色",
-      "放入姜片、葱段、料酒爆香",
-      "加入生抽、老抽调味",
-      "加清水没过排骨，大火烧开",
-      "转小火炖30分钟至排骨软烂",
-      "加入香醋，大火收汁，水淀粉勾芡"
-    ]
-  },
-  {
-    "id": 12,
-    "name": "鱼香肉丝",
-    "tags": ["炒菜"],
-    "price": 32.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/鱼香肉丝.jpg",
-    "description":"",
+        "ingredients": [
+            "排骨",
+            "姜片",
+            "葱段",
+            "料酒",
+            "生抽",
+            "老抽",
+            "香醋",
+            "白糖",
+            "盐",
+            "淀粉"
+        ],
+        "method": [
+            "排骨焯水，去除血沫和杂质",
+            "锅中放油，放入白糖炒出糖色",
+            "加入排骨翻炒至上色",
+            "放入姜片、葱段、料酒爆香",
+            "加入生抽、老抽调味",
+            "加清水没过排骨，大火烧开",
+            "转小火炖30分钟至排骨软烂",
+            "加入香醋，大火收汁，水淀粉勾芡"
+        ]
+    },
+    {
+        "id": 12,
+        "name": "鱼香肉丝",
+        "tags": [
+            "炒菜"
+        ],
+        "price": 32,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/鱼香肉丝.jpg",
+        "description": "",
         "detailDescription": "经典川菜鱼香肉丝，肉丝滑嫩，配菜爽脆，鱼香味浓郁，咸甜酸辣平衡，是一道非常下饭的家常菜。",
-    "ingredients": ["猪里脊肉", "木耳", "胡萝卜", "竹笋", "泡椒", "姜", "蒜", "葱", "生抽", "醋", "白糖", "料酒", "淀粉"],
-    "method": [
-      "里脊肉切丝，用料酒、淀粉腌制10分钟",
-      "木耳、胡萝卜、竹笋切丝",
-      "调鱼香汁：生抽、醋、白糖、淀粉、水搅匀",
-      "锅中放油，炒散肉丝至变色盛出",
-      "爆香泡椒、姜蒜末",
-      "放入木耳、胡萝卜、竹笋丝翻炒",
-      "倒入肉丝翻炒均匀",
-      "淋入鱼香汁，撒葱花即可"
-    ]
-  },
-  {
-    "id": 13,
-    "name": "凉拌黄瓜",
-    "tags": ["凉拌"],
-    "price": 16.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/凉拌黄瓜.jpg",
-    "description":"",
+        "ingredients": [
+            "猪里脊肉",
+            "木耳",
+            "胡萝卜",
+            "竹笋",
+            "泡椒",
+            "姜",
+            "蒜",
+            "葱",
+            "生抽",
+            "醋",
+            "白糖",
+            "料酒",
+            "淀粉"
+        ],
+        "method": [
+            "里脊肉切丝，用料酒、淀粉腌制10分钟",
+            "木耳、胡萝卜、竹笋切丝",
+            "调鱼香汁：生抽、醋、白糖、淀粉、水搅匀",
+            "锅中放油，炒散肉丝至变色盛出",
+            "爆香泡椒、姜蒜末",
+            "放入木耳、胡萝卜、竹笋丝翻炒",
+            "倒入肉丝翻炒均匀",
+            "淋入鱼香汁，撒葱花即可"
+        ]
+    },
+    {
+        "id": 13,
+        "name": "凉拌黄瓜",
+        "tags": [
+            "凉拌"
+        ],
+        "price": 16,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/凉拌黄瓜.jpg",
+        "description": "",
         "detailDescription": "清爽开胃的凉拌黄瓜，黄瓜脆爽，酸辣咸香，做法简单，是夏季必备的开胃小菜。",
-    "ingredients": ["黄瓜", "蒜末", "小米辣", "生抽", "香醋", "香油", "白糖", "盐", "香菜"],
-    "method": [
-      "黄瓜洗净拍碎，切成段",
-      "加入蒜末、小米辣、盐腌制5分钟",
-      "加入生抽、香醋、白糖调味",
-      "淋入香油，撒上香菜",
-      "搅拌均匀即可食用"
-    ]
-  },
-  {
-    "id": 14,
-    "name": "番茄炒蛋",
-    "tags": ["炒菜"],
-    "price": 12.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/番茄炒蛋.jpg",
-    "description":"",
+        "ingredients": [
+            "黄瓜",
+            "蒜末",
+            "小米辣",
+            "生抽",
+            "香醋",
+            "香油",
+            "白糖",
+            "盐",
+            "香菜"
+        ],
+        "method": [
+            "黄瓜洗净拍碎，切成段",
+            "加入蒜末、小米辣、盐腌制5分钟",
+            "加入生抽、香醋、白糖调味",
+            "淋入香油，撒上香菜",
+            "搅拌均匀即可食用"
+        ]
+    },
+    {
+        "id": 14,
+        "name": "番茄炒蛋",
+        "tags": [
+            "炒菜"
+        ],
+        "price": 12,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/番茄炒蛋.jpg",
+        "description": "",
         "detailDescription": "最简单也最经典的家常菜番茄炒蛋，鸡蛋嫩滑，番茄酸甜入味，做法简单，营养均衡，老少皆宜。",
-    "ingredients": ["番茄", "鸡蛋", "葱", "盐", "白糖", "食用油"],
-    "method": [
-      "鸡蛋打散，加少许盐搅匀",
-      "番茄切块，葱切葱花",
-      "锅中放油，炒熟鸡蛋盛出",
-      "锅中留底油，放入番茄翻炒至出汁",
-      "加少许白糖提鲜，盐调味",
-      "倒入炒好的鸡蛋翻炒均匀",
-      "撒葱花即可出锅"
-    ]
-  },
-  {
-    "id": 15,
-    "name": "红烧肉",
-    "tags": ["红烧"],
-    "price": 48.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/红烧肉.jpg",
-    "description":"",
+        "ingredients": [
+            "番茄",
+            "鸡蛋",
+            "葱",
+            "盐",
+            "白糖",
+            "食用油"
+        ],
+        "method": [
+            "鸡蛋打散，加少许盐搅匀",
+            "番茄切块，葱切葱花",
+            "锅中放油，炒熟鸡蛋盛出",
+            "锅中留底油，放入番茄翻炒至出汁",
+            "加少许白糖提鲜，盐调味",
+            "倒入炒好的鸡蛋翻炒均匀",
+            "撒葱花即可出锅"
+        ]
+    },
+    {
+        "id": 15,
+        "name": "红烧肉",
+        "tags": [
+            "红烧"
+        ],
+        "price": 48,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/红烧肉.jpg",
+        "description": "",
         "detailDescription": "经典的红烧肉，五花肉肥瘦相间，炖至软糯入味，色泽红亮，肥而不腻，入口即化，是家宴必备菜品。",
-    "ingredients": ["五花肉", "姜片", "葱段", "八角", "桂皮", "香叶", "生抽", "老抽", "料酒", "冰糖", "盐"],
-    "method": [
-      "五花肉切块，焯水去除血沫",
-      "锅中放少量油，炒化冰糖至枣红色",
-      "放入五花肉翻炒至上色",
-      "加入姜片、葱段、八角、桂皮、香叶爆香",
-      "加料酒、生抽、老抽调味",
-      "加清水没过肉，大火烧开",
-      "转小火慢炖1小时至肉软烂",
-      "加盐调味，大火收汁即可"
-    ]
-  },
-  {
-    "id": 16,
-    "name": "清炒时蔬",
-    "tags": ["炒菜"],
-    "price": 14.00,
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/清炒时蔬.jpg",
-    "description":"",
+        "ingredients": [
+            "五花肉",
+            "姜片",
+            "葱段",
+            "八角",
+            "桂皮",
+            "香叶",
+            "生抽",
+            "老抽",
+            "料酒",
+            "冰糖",
+            "盐"
+        ],
+        "method": [
+            "五花肉切块，焯水去除血沫",
+            "锅中放少量油，炒化冰糖至枣红色",
+            "放入五花肉翻炒至上色",
+            "加入姜片、葱段、八角、桂皮、香叶爆香",
+            "加料酒、生抽、老抽调味",
+            "加清水没过肉，大火烧开",
+            "转小火慢炖1小时至肉软烂",
+            "加盐调味，大火收汁即可"
+        ]
+    },
+    {
+        "id": 16,
+        "name": "清炒时蔬",
+        "tags": [
+            "炒菜"
+        ],
+        "price": 14,
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/清炒时蔬.jpg",
+        "description": "",
         "detailDescription": "清爽的清炒时蔬，选用新鲜青菜，简单清炒保留蔬菜的原汁原味，清淡可口，解腻又健康。",
-    "ingredients": ["青菜", "蒜", "盐", "食用油", "鸡精"],
-    "method": [
-      "青菜洗净切段，蒜切末",
-      "锅中放油，爆香蒜末",
-      "放入青菜大火快速翻炒",
-      "加盐和少许鸡精调味",
-      "炒至青菜断生即可出锅"
-    ]
-  },
+        "ingredients": [
+            "青菜",
+            "蒜",
+            "盐",
+            "食用油",
+            "鸡精"
+        ],
+        "method": [
+            "青菜洗净切段，蒜切末",
+            "锅中放油，爆香蒜末",
+            "放入青菜大火快速翻炒",
+            "加盐和少许鸡精调味",
+            "炒至青菜断生即可出锅"
+        ]
+    },
     {
         "id": 17,
         "name": "酸辣土豆丝",
@@ -466,7 +548,7 @@ const dishes = [
             "炒菜"
         ],
         "price": 28,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/扬州炒饭.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/扬州炒饭.jpg",
         "description": "",
         "detailDescription": "正宗扬州炒饭，米饭粒粒分明，配料丰富，有虾仁、火腿、鸡蛋等，色香味俱全。",
         "ingredients": [
@@ -526,7 +608,7 @@ const dishes = [
             "炖菜"
         ],
         "price": 48,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/香菇炖鸡.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/香菇炖鸡.jpg",
         "description": "",
         "detailDescription": "营养美味的香菇炖鸡，鸡肉软烂入味，香菇吸收了鸡肉的鲜香，汤浓味美，营养丰富。",
         "ingredients": [
@@ -549,21 +631,21 @@ const dishes = [
             "加盐调味，放入枸杞即可"
         ]
     },
-{
-    "id": 25,
-    "name": "粉蒸排骨",
-    "price": 42,
-    "description": "软糯入味，米粉油润，咸香不腻",
-    "detailDescription": "粉蒸排骨是经典川味家常菜，选用鲜嫩排骨裹上蒸肉米粉蒸制而成，肉质软烂脱骨，米粉吸饱肉香，咸鲜微甜、油润适口，老少皆宜。",
-    "method": "1. 排骨洗净切块，用生抽、老抽、料酒、盐、糖、豆瓣酱、葱姜腌制20分钟。2. 加入蒸肉米粉抓匀，让每块排骨裹满米粉。3. 盘底铺南瓜或土豆，摆上排骨，水开上锅蒸40-60分钟至软烂即可。",
-    "ingredients": "排骨、蒸肉米粉、葱姜、生抽、老抽、料酒、盐、糖、豆瓣酱、食用油",
-    "tags": [
-        "蒸菜",
-        "软糯",
-        "家常"
-    ],
-    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/粉蒸排骨.jpg"
-},
+    {
+        "id": 25,
+        "name": "粉蒸排骨",
+        "price": 42,
+        "description": "软糯入味，米粉油润，咸香不腻",
+        "detailDescription": "粉蒸排骨是经典川味家常菜，选用鲜嫩排骨裹上蒸肉米粉蒸制而成，肉质软烂脱骨，米粉吸饱肉香，咸鲜微甜、油润适口，老少皆宜。",
+        "method": "1. 排骨洗净切块，用生抽、老抽、料酒、盐、糖、豆瓣酱、葱姜腌制20分钟。2. 加入蒸肉米粉抓匀，让每块排骨裹满米粉。3. 盘底铺南瓜或土豆，摆上排骨，水开上锅蒸40-60分钟至软烂即可。",
+        "ingredients": "排骨、蒸肉米粉、葱姜、生抽、老抽、料酒、盐、糖、豆瓣酱、食用油",
+        "tags": [
+            "蒸菜",
+            "软糯",
+            "家常"
+        ],
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/粉蒸排骨.jpg"
+    },
     {
         "id": 26,
         "name": "韭菜盒子",
@@ -571,7 +653,7 @@ const dishes = [
             "主食"
         ],
         "price": 26,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/韭菜盒子.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/韭菜盒子.jpg",
         "description": "",
         "detailDescription": "金黄酥脆的韭菜盒子，外皮酥脆，内馅鲜香，韭菜和鸡蛋的完美结合，是经典的家常主食。",
         "ingredients": [
@@ -599,7 +681,7 @@ const dishes = [
             "卤菜"
         ],
         "price": 32,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸡爪.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸡爪.jpg",
         "description": "",
         "detailDescription": "软糯入味的卤鸡爪，鸡爪Q弹有嚼劲，卤香浓郁，是追剧、下酒的绝佳小吃。",
         "ingredients": [
@@ -632,7 +714,7 @@ const dishes = [
             "主食"
         ],
         "price": 22,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/皮蛋瘦肉粥.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/皮蛋瘦肉粥.jpg",
         "description": "",
         "detailDescription": "绵密鲜香的皮蛋瘦肉粥，大米熬至软烂，搭配嫩滑的瘦肉和Q弹的皮蛋，营养又美味。",
         "ingredients": [
@@ -654,6 +736,19 @@ const dishes = [
             "加入瘦肉丝和皮蛋丁",
             "继续熬10分钟，加盐调味",
             "撒葱花、白胡椒粉，淋香油"
+        ]
+    },
+    {
+        "id": 28,
+        "name": "1",
+        "price": 11,
+        "image": "11",
+        "description": "111",
+        "detailDescription": "111",
+        "method": "111",
+        "ingredients": "111",
+        "tags": [
+            "11"
         ]
     }
 ];
