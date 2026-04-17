@@ -102,7 +102,7 @@ const dishes = [
             "低脂"
         ],
         "price": 26,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/蔬菜沙拉.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/蔬菜沙拉.jpg",
         "description": "",
         "detailDescription": "新鲜的混合蔬菜，搭配特制沙拉酱，清爽可口，营养丰富。适合减肥人士和健康饮食爱好者。",
         "ingredients": [
