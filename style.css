@@ -691,6 +691,44 @@ body {
     color: #7A77B9;
 }
 
+.github-save-btn {
+    padding: 0.8rem;
+    background-color: #24292E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+}
+
+.github-save-btn:hover {
+    background-color: #3D444D;
+    transform: translateY(-2px);
+}
+
+.github-save-btn:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.save-status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
+}
+
+.save-status.success {
+    color: #27AE60;
+}
+
+.save-status.error {
+    color: #E74C3C;
+}
+
 #dish-form, #tag-form {
     display: flex;
     flex-direction: column;
