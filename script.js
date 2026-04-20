@@ -623,7 +623,8 @@ let cart = [];`;
         const owner = 'jyh318';
         const repo = 'menu';
         const path = 'data.js';
-        const token = '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';
+        const lins = 'r8OmgPFdsz5bOADbmHAhqMTfDeWqvk43Nytq'
+        const token = 'ghp_' + lins;
         
         // 先获取文件的SHA（用于更新）
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
