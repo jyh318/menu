@@ -510,9 +510,6 @@ function saveEdit() {
             
             // 清空表单
             editDishForm.reset();
-            
-            // 生成更新后的dishes数组JSON
-            generateDishesJSON();
         }
     }
 }
