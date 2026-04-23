@@ -651,71 +651,28 @@ async function saveDataToGitHub() {
     statusEl.className = 'save-status';
     
     try {
-        // 生成完整的data.js内容
-        const dataJSContent = `// 初始标签数据
-let tags = ${JSON.stringify(tags, null, 4)};
-
-// 初始菜品数据
-const dishes = ${JSON.stringify(dishes, null, 4)};
-
-// 购物车数据
-let cart = [];`;
-
         // GitHub API配置
         const owner = 'jyh318';
         const repo = 'menu';
-        const path = 'data.js';
         const lins = 'r8OmgPFdsz5bOADbmHAhqMTfDeWqvk43Nytq'
         const token = 'ghp_' + lins;
         
-        // 先获取文件的SHA（用于更新）
-        const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        const getResponse = await fetch(getUrl, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
-        });
+        // 1. 保存data.js文件
+        const dataJSContent = `// 初始菜品数据
+export const dishes = ${JSON.stringify(dishes, null, 4)};`;
+        await saveFileToGitHub(owner, repo, 'data.js', dataJSContent, token);
         
-        let sha = null;
-        if (getResponse.ok) {
-            const existingFile = await getResponse.json();
-            sha = existingFile.sha;
-        }
+        // 2. 保存tags.js文件
+        const tagsJSContent = `// 初始标签数据
+export let tags = ${JSON.stringify(tags, null, 4)};
+
+// 标签颜色配置
+export const tagColors = ${JSON.stringify(tagColors, null, 4)};`;
+        await saveFileToGitHub(owner, repo, 'tags.js', tagsJSContent, token);
         
-        // 编码内容
-        const content = btoa(unescape(encodeURIComponent(dataJSContent)));
-        
-        // 构建请求数据
-        const requestData = {
-            message: 'Update data.js via admin panel',
-            content: content
-        };
-        
-        if (sha) {
-            requestData.sha = sha;
-        }
-        
-        // 发送请求
-        const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        const response = await fetch(putUrl, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
-        });
-        
-        if (response.ok) {
-            const result = await response.json();
-            statusEl.textContent = '✓ 保存成功！';
-            statusEl.className = 'save-status success';
-        } else {
-            const error = await response.json();
-            console.error('保存失败:', error);
-            statusEl.textContent = '✗ 保存失败: ' + (error.message || '未知错误');
-            statusEl.className = 'save-status error';
-        }
+        // 保存成功
+        statusEl.textContent = '✓ 保存成功！';
+        statusEl.className = 'save-status success';
     } catch (error) {
         console.error('保存失败:', error);
         statusEl.textContent = '✗ 保存失败: ' + error.message;
@@ -723,6 +680,52 @@ let cart = [];`;
     } finally {
         // 恢复按钮状态
         saveBtn.disabled = false;
+    }
+}
+
+// 保存单个文件到GitHub
+async function saveFileToGitHub(owner, repo, path, content, token) {
+    // 先获取文件的SHA（用于更新）
+    const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const getResponse = await fetch(getUrl, {
+        headers: {
+            'Authorization': `token ${token}`
+        }
+    });
+    
+    let sha = null;
+    if (getResponse.ok) {
+        const existingFile = await getResponse.json();
+        sha = existingFile.sha;
+    }
+    
+    // 编码内容
+    const encodedContent = btoa(unescape(encodeURIComponent(content)));
+    
+    // 构建请求数据
+    const requestData = {
+        message: `Update ${path} via admin panel`,
+        content: encodedContent
+    };
+    
+    if (sha) {
+        requestData.sha = sha;
+    }
+    
+    // 发送请求
+    const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const response = await fetch(putUrl, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    });
+    
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || '保存文件失败');
     }
 }
 
