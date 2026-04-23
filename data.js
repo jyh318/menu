@@ -86,7 +86,7 @@ let dishes = [
             "卤菜",
             "丰富"
         ],
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸭.png"
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸭.jpg"
     },
     {
         "id": 6,
@@ -117,6 +117,21 @@ let dishes = [
         "detailDescription": "新鲜的混合蔬菜，搭配特制沙拉酱，清爽可口，营养丰富。适合减肥人士和健康饮食爱好者。",
         "ingredients": "生菜,黄瓜,胡萝卜,小番茄,橄榄油,柠檬汁,蜂蜜,盐,黑胡椒",
         "method": "生菜洗净撕成小块,黄瓜、胡萝卜切成条,小番茄对半切,将所有蔬菜放入大碗中,橄榄油、柠檬汁、蜂蜜、盐、黑胡椒混合成沙拉酱,将沙拉酱淋在蔬菜上,轻轻拌匀即可"
+    },
+    {
+    "id": 8,
+    "name": "螺蛳粉",
+    "tags": [
+        "酸辣",
+        "特色",
+        "网红美食"
+    ],
+    "price": 15,
+    "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/螺蛳粉.jpg",
+    "description": "",
+    "detailDescription": "地道柳州风味螺蛳粉，汤底浓郁酸爽，米粉劲道顺滑，配料丰富，酸辣过瘾，回味悠长。",
+    "ingredients": "柳州米粉,酸笋,腐竹,花生,木耳,黄花菜,酸豆角,辣椒油,螺蛳汤底,葱花,香菜",
+    "method": "米粉冷水浸泡软化,锅中烧水煮熟米粉捞出过凉水,螺蛳汤底煮沸,依次下入酸笋、酸豆角、木耳等配菜煮三分钟,放入煮好的米粉,加入辣椒油、盐调味,最后撒上腐竹、花生、葱花、香菜即可"
     },
     {
         "id": 9,
@@ -151,7 +166,7 @@ let dishes = [
             "红烧"
         ],
         "price": 28,
-        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/糖醋排骨.png",
+        "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/糖醋排骨.jpg",
         "description": "",
         "detailDescription": "酸甜可口的糖醋排骨，排骨外焦里嫩，裹满浓郁的糖醋酱汁，色泽红亮，口感丰富，老少皆宜。",
         "ingredients": "排骨,姜片,葱段,料酒,生抽,老抽,香醋,白糖,盐,淀粉",
