@@ -317,65 +317,7 @@ body {
     font-size: 0.7rem;
 }
 
-.dish-tag.炒菜 {
-    background-color: #FF6B6B;
-}
-
-.dish-tag.炖菜 {
-    background-color: #4ECDC4;
-}
-
-.dish-tag.卤菜 {
-    background-color: #45B7D1;
-}
-
-.dish-tag.红烧 {
-    background-color: #96CEB4;
-}
-
-.dish-tag.清蒸 {
-    background-color: #FFEAA7;
-    color: #333;
-}
-
-.dish-tag.营养 {
-    background-color: #DDA0DD;
-}
-
-.dish-tag.丰富 {
-    background-color: #98D8C8;
-    color: #333;
-}
-
-.dish-tag.重口 {
-    background-color: #F7DC6F;
-    color: #333;
-}
-
-.dish-tag.清淡 {
-    background-color: #85C1E9;
-}
-
-.dish-tag.凉拌 {
-    background-color: #BB8FCE;
-}
-
-.dish-tag.健康 {
-    background-color: #58D68D;
-}
-
-.dish-tag.低脂 {
-    background-color: #85C1E9;
-}
-
-.dish-tag.主食 {
-    background-color: #F39C12;
-}
-
-.dish-tag.蒸菜 {
-    background-color: #AED6F1;
-    color: #333;
-}
+/* 标签颜色通过JavaScript动态生成 */
 
 .dish-tag.more {
     background-color: #999;

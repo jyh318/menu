@@ -1,3 +1,7 @@
+// 导入数据
+import { tags, tagColors } from './tags.js';
+import { dishes as initialDishes } from './data.js';
+
 // DOM元素
 const menuGrid = document.getElementById('menu-grid');
 const tagsWrapper = document.getElementById('tags-wrapper');
@@ -27,9 +31,26 @@ let cartVisible = false;
 let cartExpanded = false;
 let editingDishId = null;
 let editMode = false;
+let dishes = [...initialDishes];
+let cart = [];
+
+// 生成标签颜色样式
+function generateTagStyles() {
+    const style = document.createElement('style');
+    let css = '';
+    
+    for (const [tag, colors] of Object.entries(tagColors)) {
+        css += `.dish-tag.${tag} { background-color: ${colors.backgroundColor}; color: ${colors.color}; }\n`;
+        css += `.tag.${tag} { background-color: ${colors.backgroundColor}; color: ${colors.color}; }\n`;
+    }
+    
+    style.textContent = css;
+    document.head.appendChild(style);
+}
 
 // 初始化
 function init() {
+    generateTagStyles();
     renderTags();
     renderDishes();
     renderCart();
@@ -548,13 +569,8 @@ function saveEdit() {
 // 生成dishes数组JSON
 function generateDishesJSON() {
     // 生成完整的data.js内容
-    const dataJSContent = `// 初始标签数据
-let tags = [
-    "炒菜", "炖菜", "卤菜", "红烧", "清蒸", "营养", "丰富", "重口", "清淡", "主食", "健康"
-];
-
-// 初始菜品数据
-const dishes = [
+    const dataJSContent = `// 初始菜品数据
+export const dishes = [
 ${dishes.map(dish => {
     // 确保所有字段格式正确
     const formattedDish = {
@@ -565,14 +581,12 @@ ${dishes.map(dish => {
     };
     return JSON.stringify(formattedDish, null, 4);
 }).join(',\n')}
-];
-
-// 购物车数据
-let cart = [];`;
+];`;
     
     // 生成JSON对象用于快捷指令
     const jsonData = {
         tags: tags,
+        tagColors: tagColors,
         dishes: dishes
     };
     
