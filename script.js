@@ -104,7 +104,8 @@ function bindEvents() {
     });
 
     // 购物车切换
-    cartToggle.addEventListener('click', () => {
+    cartToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         cartExpanded = false;
         updateCartDisplay();
     });
@@ -166,6 +167,7 @@ function toggleTag(tag) {
 
 // 渲染菜品
 function renderDishes() {
+    // 清空菜单容器
     menuGrid.innerHTML = '';
     
     const filteredDishes = dishes.filter(dish => {
@@ -204,44 +206,99 @@ function createDishCard(dish) {
     card.innerHTML = `
         <div class="dish-image">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E加载中...%3C/text%3E%3C/svg%3E" data-src="${dish.image}" alt="${dish.name}" class="lazy-image" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="dish-actions" style="display: none;">
+                <button class="dish-action-btn edit-btn" data-id="${dish.id}">
+                    <img src="img/icon/编辑.png" alt="编辑" width="20" height="20">
+                </button>
+                <button class="dish-action-btn delete-btn" data-id="${dish.id}">
+                    <img src="img/icon/删除.png" alt="删除" width="20" height="20">
+                </button>
+            </div>
         </div>
         <div class="dish-info">
             <h3 class="dish-name">${dish.name}</h3>
             <div class="dish-price">¥${dish.price.toFixed(2)}</div>
             <p class="dish-desc">${dish.description}</p>
             <div class="dish-tags">
-                ${dish.tags.map(tag => `<span class="dish-tag ${tag}">${tag}</span>`).join('')}
-            </div>
-            <div class="dish-quantity">
-                <div class="quantity-control">
-                    <button class="quantity-btn decrease" data-id="${dish.id}">-</button>
-                    <span class="quantity" data-id="${dish.id}">0</span>
-                    <button class="quantity-btn increase" data-id="${dish.id}">+</button>
-                </div>
-                <button class="edit-dish-btn" data-id="${dish.id}" style="display: none;">编辑</button>
+                ${dish.tags.slice(0, 2).map(tag => `<span class="dish-tag ${tag}">${tag}</span>`).join('')}${dish.tags.length > 2 ? '<span class="dish-tag more">...</span>' : ''}
             </div>
         </div>
     `;
 
     // 点击卡片查看详情
     card.addEventListener('click', (e) => {
-        if (!e.target.closest('.quantity-btn') && !e.target.closest('.edit-dish-btn')) {
+        // 如果点击的是操作按钮，不显示详情
+        if (!e.target.closest('.dish-action-btn')) {
             showDishDetail(dish);
         }
     });
     
-    // 编辑菜品按钮点击事件
-    const editBtn = card.querySelector('.edit-dish-btn');
+    // 编辑按钮点击事件
+    const editBtn = card.querySelector('.edit-btn');
     editBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         editDish(dish.id);
     });
+    
+    // 删除按钮点击事件
+    const deleteBtn = card.querySelector('.delete-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // 使用this来获取按钮的data-id属性
+            const dishId = parseInt(this.dataset.id);
+            
+            // 直接删除菜品，不显示确认弹窗
+            dishes = dishes.filter(d => d.id !== dishId);
+            // 重新渲染菜品
+            renderDishes();
+        });
+    }
 
-    // 数量控制
-    const decreaseBtn = card.querySelector('.decrease');
-    const increaseBtn = card.querySelector('.increase');
-    const quantitySpan = card.querySelector('.quantity');
+    return card;
+}
 
+// 显示菜品详情
+function showDishDetail(dish) {
+    dishDetail.innerHTML = `
+        <div class="dish-detail-image">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300' viewBox='0 0 800 300'%3E%3Crect width='800' height='300' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E加载中...%3C/text%3E%3C/svg%3E" data-src="${dish.image}" alt="${dish.name}" class="lazy-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+        </div>
+        <h2 class="dish-detail-name">${dish.name}</h2>
+        <div class="dish-detail-price-section">
+            <div class="dish-detail-price">¥${dish.price.toFixed(2)}</div>
+            <div class="quantity-control">
+                <button class="quantity-btn decrease" data-id="${dish.id}">-</button>
+                <span class="quantity" data-id="${dish.id}">0</span>
+                <button class="quantity-btn increase" data-id="${dish.id}">+</button>
+            </div>
+        </div>
+        <div class="dish-detail-tags">
+            ${dish.tags.map(tag => `<span class="dish-tag ${tag}">${tag}</span>`).join('')}
+        </div>
+        <div class="dish-detail-section">
+            <h4>详细描述</h4>
+            <p>${dish.detailDescription}</p>
+        </div>
+        <div class="dish-detail-section">
+            <h4>制作方法</h4>
+            <p>${dish.method}</p>
+        </div>
+        <div class="dish-detail-section">
+            <h4>用料</h4>
+            <p>${dish.ingredients}</p>
+        </div>
+    `;
+    dishModal.classList.add('active');
+    // 加载懒加载图片
+    lazyLoad();
+    
+    // 绑定数量控制事件
+    const decreaseBtn = dishDetail.querySelector('.decrease');
+    const increaseBtn = dishDetail.querySelector('.increase');
+    const quantitySpan = dishDetail.querySelector('.quantity');
+    
     decreaseBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         let quantity = parseInt(quantitySpan.textContent);
@@ -260,7 +317,7 @@ function createDishCard(dish) {
             }
         }
     });
-
+    
     increaseBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         let quantity = parseInt(quantitySpan.textContent);
@@ -269,34 +326,8 @@ function createDishCard(dish) {
         addToCart(dish, 1);
         updateCartDisplay();
     });
+    
 
-    return card;
-}
-
-// 显示菜品详情
-function showDishDetail(dish) {
-    dishDetail.innerHTML = `
-        <div class="dish-detail-image">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300' viewBox='0 0 800 300'%3E%3Crect width='800' height='300' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E加载中...%3C/text%3E%3C/svg%3E" data-src="${dish.image}" alt="${dish.name}" class="lazy-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-        </div>
-        <h2 class="dish-detail-name">${dish.name}</h2>
-        <div class="dish-detail-price">¥${dish.price.toFixed(2)}</div>
-        <div class="dish-detail-section">
-            <h4>详细描述</h4>
-            <p>${dish.detailDescription}</p>
-        </div>
-        <div class="dish-detail-section">
-            <h4>制作方法</h4>
-            <p>${dish.method}</p>
-        </div>
-        <div class="dish-detail-section">
-            <h4>用料</h4>
-            <p>${dish.ingredients}</p>
-        </div>
-    `;
-    dishModal.classList.add('active');
-    // 加载懒加载图片
-    lazyLoad();
 }
 
 // 添加到购物车
@@ -803,12 +834,12 @@ function bindLogoClickEvent() {
 
 // 切换编辑按钮显示/隐藏
 function toggleEditButtons() {
-    const editButtons = document.querySelectorAll('.edit-dish-btn');
-    editButtons.forEach(btn => {
+    const actionContainers = document.querySelectorAll('.dish-actions');
+    actionContainers.forEach(container => {
         if (editMode) {
-            btn.style.display = 'block';
+            container.style.display = 'flex';
         } else {
-            btn.style.display = 'none';
+            container.style.display = 'none';
         }
     });
 }

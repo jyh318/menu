@@ -14,7 +14,7 @@ let tags = [
 ];
 
 // 初始菜品数据
-const dishes = [
+let dishes = [
     {
         "id": 1,
         "name": "宫保鸡丁",
