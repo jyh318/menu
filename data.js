@@ -10,7 +10,7 @@ export const dishes = [
         "ingredients": "鸡肉、花生、辣椒、葱姜蒜、盐、料酒、淀粉",
         "tags": [
             "炒菜",
-            "重口",
+            "咸鲜",
             "丰富"
         ],
         "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/宫保鸡丁.jpg"
@@ -399,6 +399,3 @@ export const dishes = [
         "method": "大米淘洗干净，提前浸泡30分钟,瘦肉切丝，用盐、淀粉腌制,皮蛋切丁，姜切丝，葱切花,锅中加水烧开，放入大米和姜丝,大火烧开转小火熬30分钟,加入瘦肉丝和皮蛋丁,继续熬10分钟，加盐调味,撒葱花、白胡椒粉，淋香油"
     }
 ];
-
-// 购物车数据
-let cart = [];
