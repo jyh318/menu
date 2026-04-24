@@ -1117,13 +1117,16 @@ body {
 
     .tags-wrapper {
         gap: 0.5rem;
-        flex-direction: column;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
     }
 
     .tag-category {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
+        flex-shrink: 0;
     }
 
     .tag-category-title {

@@ -211,7 +211,34 @@ function renderTags() {
         
         // 点击一级标签展开/收起二级标签
         categoryTitle.addEventListener('click', () => {
-            categoryContainer.classList.toggle('expanded');
+            // 检查是否有其他一级分类下有选中的二级标签
+            const otherCategoriesHaveSelectedTags = Array.from(document.querySelectorAll('.tag-category')).some(container => {
+                const title = container.querySelector('.tag-category-title');
+                if (title) {
+                    const categoryName = title.textContent.trim().replace(/▼|\▲/g, '').trim();
+                    if (categoryName !== category) {
+                        return container.querySelectorAll('.tag.active').length > 0;
+                    }
+                }
+                return false;
+            });
+            
+            if (otherCategoriesHaveSelectedTags) {
+                // 如果有其他一级分类下有选中的二级标签，取消所有选中的二级标签
+                selectedTags = [];
+                renderTags();
+                renderDishes();
+            }
+            
+            // 收起所有一级标签
+            document.querySelectorAll('.tag-category').forEach(cat => {
+                cat.classList.remove('expanded');
+            });
+            
+            // 如果之前没有选中其他二级标签，则展开当前一级标签
+            if (!otherCategoriesHaveSelectedTags) {
+                categoryContainer.classList.toggle('expanded');
+            }
         });
         
         categoryContainer.appendChild(categoryTitle);
