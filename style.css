@@ -156,8 +156,38 @@ body {
 }
 
 .tag.active {
-    transform: scale(1.1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 0 3px rgba(255, 255, 255, 0.8),
+        0 0 0 5px currentColor,
+        0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid white;
+    animation: tagPulse 0.6s ease-out;
+}
+
+@keyframes tagPulse {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.25);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1.18);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+.tag.active::after {
+    content: '✓';
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 /* 标签颜色与菜品卡片标签颜色一致 */

@@ -161,6 +161,19 @@ function bindEvents() {
 
 // 渲染标签（双层结构，点击展开）
 function renderTags() {
+    // 在渲染前记录展开状态
+    const expandedCategories = new Set();
+    const existingCategories = document.querySelectorAll('.tag-category');
+    existingCategories.forEach(cat => {
+        if (cat.classList.contains('expanded')) {
+            const title = cat.querySelector('.tag-category-title');
+            if (title) {
+                const categoryName = title.textContent.trim().replace(/▼|\▲/g, '').trim();
+                expandedCategories.add(categoryName);
+            }
+        }
+    });
+    
     tagsWrapper.innerHTML = '';
     
     // 遍历第一层标签（大分类）
@@ -168,6 +181,11 @@ function renderTags() {
         // 创建分类容器
         const categoryContainer = document.createElement('div');
         categoryContainer.className = 'tag-category';
+        
+        // 如果之前是展开状态，保持展开
+        if (expandedCategories.has(category)) {
+            categoryContainer.classList.add('expanded');
+        }
         
         // 创建分类标题
         const categoryTitle = document.createElement('div');
@@ -204,6 +222,17 @@ function renderTags() {
 
 // 切换标签
 function toggleTag(tag) {
+    // 查找该标签所属的一级分类
+    let parentCategory = null;
+    for (const [category, subTags] of Object.entries(tags)) {
+        if (subTags.includes(tag)) {
+            parentCategory = category;
+            break;
+        }
+    }
+    
+    const wasSelected = selectedTags.includes(tag);
+    
     if (selectedTags.length === 1 && selectedTags[0] === tag) {
         // 如果点击的是当前选中的标签，取消选择
         selectedTags = [];
@@ -211,6 +240,23 @@ function toggleTag(tag) {
         // 否则选择该标签
         selectedTags = [tag];
     }
+    
+    // 如果是取消选中，检查该一级菜单下是否还有其他选中的标签
+    if (wasSelected && parentCategory) {
+        setTimeout(() => {
+            const categoryContainers = document.querySelectorAll('.tag-category');
+            categoryContainers.forEach(container => {
+                const title = container.querySelector('.tag-category-title');
+                if (title && title.textContent.trim().startsWith(parentCategory)) {
+                    const activeTags = container.querySelectorAll('.tag.active');
+                    if (activeTags.length === 0) {
+                        container.classList.remove('expanded');
+                    }
+                }
+            });
+        }, 0);
+    }
+    
     renderTags();
     renderDishes();
 }
