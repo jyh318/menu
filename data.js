@@ -68,7 +68,7 @@ export const dishes = [
         "method": "1. 鸭子处理干净。2. 锅中放入卤水，加入鸭子。3. 大火烧开后转小火卤煮1小时。4. 关火后浸泡30分钟。",
         "ingredients": "鸭子、卤水、八角、桂皮、香叶、花椒",
         "tags": [
-            "卤菜",
+            "卤制",
             "丰富"
         ],
         "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸭.jpg"
@@ -269,7 +269,7 @@ export const dishes = [
         "id": 19,
         "name": "酱牛肉",
         "tags": [
-            "卤菜"
+            "卤制"
         ],
         "price": 68,
         "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/酱牛肉.jpg",
@@ -376,7 +376,7 @@ export const dishes = [
         "id": 27,
         "name": "卤鸡爪",
         "tags": [
-            "卤菜"
+            "卤制"
         ],
         "price": 20,
         "image": "https://cdn.jsdelivr.net/gh/jyh318/menu@main/img/卤鸡爪.jpg",

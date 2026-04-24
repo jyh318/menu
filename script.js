@@ -1,5 +1,5 @@
 // 导入数据
-import { tags, tagColors } from './tags.js';
+import { tags, tagColors, getAllTags } from './tags.js';
 import { dishes as initialDishes } from './data.js';
 
 // DOM元素
@@ -159,18 +159,47 @@ function bindEvents() {
     }
 }
 
-// 渲染标签
+// 渲染标签（双层结构，点击展开）
 function renderTags() {
     tagsWrapper.innerHTML = '';
-    tags.forEach(tag => {
-        const tagElement = document.createElement('div');
-        tagElement.className = `tag ${tag} ${selectedTags.includes(tag) ? 'active' : ''}`;
-        tagElement.textContent = tag;
-        tagElement.addEventListener('click', () => {
-            toggleTag(tag);
+    
+    // 遍历第一层标签（大分类）
+    for (const [category, subTags] of Object.entries(tags)) {
+        // 创建分类容器
+        const categoryContainer = document.createElement('div');
+        categoryContainer.className = 'tag-category';
+        
+        // 创建分类标题
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'tag-category-title';
+        categoryTitle.textContent = category;
+        categoryTitle.innerHTML += ' ▼';
+        
+        // 创建子标签容器（默认隐藏）
+        const subTagsContainer = document.createElement('div');
+        subTagsContainer.className = 'tag-sub-container';
+        
+        // 遍历第二层标签（子标签）
+        subTags.forEach(tag => {
+            const tagElement = document.createElement('div');
+            tagElement.className = `tag ${tag} ${selectedTags.includes(tag) ? 'active' : ''}`;
+            tagElement.textContent = tag;
+            tagElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleTag(tag);
+            });
+            subTagsContainer.appendChild(tagElement);
         });
-        tagsWrapper.appendChild(tagElement);
-    });
+        
+        // 点击一级标签展开/收起二级标签
+        categoryTitle.addEventListener('click', () => {
+            categoryContainer.classList.toggle('expanded');
+        });
+        
+        categoryContainer.appendChild(categoryTitle);
+        categoryContainer.appendChild(subTagsContainer);
+        tagsWrapper.appendChild(categoryContainer);
+    }
 }
 
 // 切换标签
@@ -436,7 +465,11 @@ function updateDishQuantity(dishId, quantity) {
 // 渲染管理员标签
 function renderAdminTags() {
     tagsList.innerHTML = '';
-    tags.forEach(tag => {
+    
+    // 获取所有标签的扁平列表
+    const allTags = getAllTags();
+    
+    allTags.forEach(tag => {
         // 检查标签是否被任何菜品引用
         const isTagUsed = dishes.some(dish => dish.tags.includes(tag));
         const tagElement = document.createElement('div');
@@ -452,7 +485,14 @@ function renderAdminTags() {
     document.querySelectorAll('.tag-remove').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const tag = e.target.dataset.tag;
-            tags = tags.filter(t => t !== tag);
+            // 在双层结构中删除标签
+            for (const [category, subTags] of Object.entries(tags)) {
+                const index = subTags.indexOf(tag);
+                if (index !== -1) {
+                    tags[category].splice(index, 1);
+                    break;
+                }
+            }
             renderAdminTags();
             renderTags();
             renderDishes();
@@ -463,8 +503,9 @@ function renderAdminTags() {
 // 添加标签
 function addTag() {
     const tagName = document.getElementById('tag-name').value.trim();
-    if (tagName && !tags.includes(tagName)) {
-        tags.push(tagName);
+    if (tagName && !getAllTags().includes(tagName)) {
+        // 默认添加到"其他"分类
+        tags['其他'].push(tagName);
         document.getElementById('tag-name').value = '';
         renderAdminTags();
         renderTags();
