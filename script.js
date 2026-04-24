@@ -173,7 +173,7 @@ function renderTags() {
         const categoryTitle = document.createElement('div');
         categoryTitle.className = 'tag-category-title';
         categoryTitle.textContent = category;
-        categoryTitle.innerHTML += ' ▼';
+        categoryTitle.innerHTML += '<img src="img/icon/下拉.png" alt="展开" class="dropdown-icon" width="16" height="16">';
         
         // 创建子标签容器（默认隐藏）
         const subTagsContainer = document.createElement('div');
