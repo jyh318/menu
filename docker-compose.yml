@@ -1,0 +1,19 @@
+services:
+  menu:
+    # 改用本地构建镜像，不再拉取官方python镜像
+    build: .
+    image: menu:1.0
+    container_name: menu
+    restart: always
+    volumes:
+      - /vol1/1000/menu:/app
+    ports:
+      - "8080:8080"
+    env_file: .env
+    # 删掉原来带pip install的command，直接运行程序
+    command: python app.py
+    networks:
+      - app-bridge
+networks:
+  app-bridge:
+    external: true
